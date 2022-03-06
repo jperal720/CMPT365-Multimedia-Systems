@@ -2,19 +2,21 @@ package com.company;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+import java.io.*;
+
+import com.company.WavFile.WavFile;
+
+
 
 public class WavConverterGUI extends JFrame{
     private JPanel mainPanel;
     private JButton selectButton;
     private JFileChooser openFileChooser;
-    private AudioInputStream wavFile;
-
+    private AudioInputStream file;
 
     public WavConverterGUI(String appName){
         super(appName);
@@ -35,10 +37,9 @@ public class WavConverterGUI extends JFrame{
 
                 if (returnValue == openFileChooser.APPROVE_OPTION){
                     try{
-                        wavFile = AudioSystem.getAudioInputStream(openFileChooser.getSelectedFile());
-                        Clip clip = AudioSystem.getClip();
-                        clip.open(wavFile);
-                        clip.start();
+//                        file = AudioSystem.getAudioInputStream(openFileChooser.getSelectedFile());
+                        WavFile wavFile = WavFile.openWavFile(openFileChooser.getSelectedFile());
+                        wavFile.display();
                     }catch(Exception ioe){
                         System.out.println("Error: could not load file");
                     }
