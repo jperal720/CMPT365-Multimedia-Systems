@@ -48,7 +48,7 @@ public class MyPanel extends JPanel {
             freq+=3;
             if (buffer[z]== 0.0)
                 break;
-            if ((int) (buffer[z] * 10000) <= 0) {
+            if ((int) (buffer[z] * 100000) <= 0) {
                 g2.fillRect(freq, getHeight() / 2, 2, Math.abs((int) (buffer[z] * 10000)));
             }
             else{
